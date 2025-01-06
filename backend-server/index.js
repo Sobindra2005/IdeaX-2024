@@ -5,8 +5,8 @@ const { connectMongoDb } = require("./conntectTOMongodb");
 const routes=require('./routes/routes')
 const app = express();
 const url = process.env.MONGODB_URI;
-port = process.env.port;
-
+const port = process.env.port;
+const Base_url= process.env.Base_url
 
 connectMongoDb(url);
 
@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json({}));
 
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: `${Base_url}`,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
